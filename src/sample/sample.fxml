@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -58,6 +56,9 @@
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -69,47 +70,50 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Button mnemonicParsing="false" text="Button" />
-                              <Button mnemonicParsing="false" text="Button" GridPane.rowIndex="1" />
                               <TextField GridPane.columnIndex="1" />
                               <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
                               <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Button mnemonicParsing="false" text="kgkjhlk" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="5" />
                            </children>
                         </GridPane>
                         <TextArea maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="389.0" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="63.0" prefWidth="640.0">
-                     <children>
-                        <TextField />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                     </children></HBox>
-                  <HBox prefHeight="29.0" prefWidth="640.0">
+                  <HBox spacing="1.0">
                      <children>
                         <Button mnemonicParsing="false" text="Button" />
-                        <Button mnemonicParsing="false" text="Button" />
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Button" />
+                        <Button layoutX="62.0" layoutY="10.0" mnemonicParsing="false" text="Button" />
+                        <Button layoutX="114.0" layoutY="10.0" mnemonicParsing="false" text="Button" />
+                        <Button layoutX="166.0" layoutY="10.0" mnemonicParsing="false" text="Button" />
+                        <Button layoutX="218.0" layoutY="10.0" mnemonicParsing="false" text="Button" />
+                        <Button layoutX="270.0" layoutY="10.0" mnemonicParsing="false" text="Button" />
+                        <Button layoutX="322.0" layoutY="10.0" mnemonicParsing="false" text="Button" />
+                        <Button layoutX="374.0" layoutY="10.0" mnemonicParsing="false" text="Button" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </VBox.margin></HBox>
+                  <HBox>
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#encryptClicked" text="Encrypt" />
+                        <Button mnemonicParsing="false" text="Reset" />
                      </children></HBox>
                </children>
             </VBox>
