@@ -1,6 +1,8 @@
 package sample;
 
-import a.a.a.c.B;
+import com.btr.proxy.util.PlatformUtil;
+import javafx.application.Platform;
+import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,8 +12,12 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class Controller {
+public class Controller implements Initializable {
 
     @FXML private TextField inputPath;
     @FXML private TextField outputPath;
@@ -47,7 +53,65 @@ public class Controller {
 
     @FXML private TextArea previewWindow;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources){
+         key1Button1.setText("0");
+         key1Button1.setStyle("");
+         key1Button2.setText("0");
+         key1Button2.setStyle("");
+         key1Button3.setText("0");
+         key1Button3.setStyle("");
+         key1Button4.setText("0");
+         key1Button4.setStyle("");
 
+        key2Button1.setText("0");
+        key2Button1.setStyle("");
+        key2Button2.setText("0");
+        key2Button2.setStyle("");
+        key2Button3.setText("0");
+        key2Button3.setStyle("");
+        key2Button4.setText("0");
+        key2Button4.setStyle("");
+
+        key3Button1.setText("0");
+        key3Button1.setStyle("");
+        key3Button2.setText("0");
+        key3Button2.setStyle("");
+        key3Button3.setText("0");
+        key3Button3.setStyle("");
+        key3Button4.setText("0");
+        key3Button4.setStyle("");
+
+        key4Button1.setText("0");
+        key4Button1.setStyle("");
+        key4Button2.setText("0");
+        key4Button2.setStyle("");
+        key4Button3.setText("0");
+        key4Button3.setStyle("");
+        key4Button4.setText("0");
+        key4Button4.setStyle("");
+
+
+         bigKeyButton1.setText("0");
+         bigKeyButton1.setStyle("");
+        bigKeyButton2.setText("0");
+        bigKeyButton2.setStyle("");
+        bigKeyButton3.setText("0");
+        bigKeyButton3.setStyle("");
+        bigKeyButton4.setText("0");
+        bigKeyButton4.setStyle("");
+        bigKeyButton5.setText("0");
+        bigKeyButton5.setStyle("");
+        bigKeyButton6.setText("0");
+        bigKeyButton6.setStyle("");
+        bigKeyButton7.setText("0");
+        bigKeyButton7.setStyle("");
+        bigKeyButton8.setText("0");
+        bigKeyButton8.setStyle("");
+        bigKeyButton9.setText("0");
+        bigKeyButton9.setStyle("");
+
+    }
 
     public void encryptClicked(){
         System.out.println(getKey1());
@@ -64,8 +128,9 @@ public class Controller {
         }
     }
 
-    public void buttonToggle(){
-
+    public void close(){
+        Platform.exit();
+        System.exit(0);
     }
 
     @FXML protected void fileOpen(ActionEvent event){
@@ -74,8 +139,17 @@ public class Controller {
         fcInput.setTitle("Source File");
         inputPath.setText(fcInput.showOpenDialog(new Stage()).toString());
         BinaryBox bb = new BinaryBox();
-        StringBuilder test = bb.buildBinaryString(inputPath.getText());
+        StringBuilder test = new StringBuilder(); // = bb.buildBinaryString(inputPath.getText());
         System.out.println(test.toString());
+        try {
+            int c;
+            FileInputStream previewfile = new FileInputStream(inputPath.getText());
+            while ((c = previewfile.read()) != -1)
+                test.append((char)c);
+            System.out.print(test.toString());
+        } catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
         previewWindow.setText(test.toString());
     }
 
@@ -96,12 +170,28 @@ public class Controller {
         Button button = (Button)event.getSource();
         if (button.getText() == "1") {
             button.setText("0");
-            button.setStyle("-fx-background-color: white");
+            button.setStyle("");
         } else {
             button.setText("1");
             button.setStyle("-fx-background-color: crimson");
         }
 
+        setPreviewWindow();
+
+    }
+
+    private void setPreviewWindow(){
+        if (inputPath.getText() != "" && outputPath.getText() != ""){
+            BinaryBox bBox = new BinaryBox();
+            StringBuilder plainBinary = bBox.buildBinaryString(inputPath.getText());
+            Encryptor encryptor = new Encryptor(plainBinary, getKey1(),getKey2(),getKey3(),getKey4(),getBigKey());
+            previewWindow.setText(bBox.toString(encryptor.getOutputString()));
+        }
+    }
+
+    @FXML protected void reset(){
+        initialize(null,null);
+        setPreviewWindow();
     }
 
     protected String getKey1(){

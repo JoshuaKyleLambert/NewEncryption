@@ -10,8 +10,8 @@ import java.util.logging.Logger;
  */
 public class BinaryBox {
 
-    public boolean writeBinaryStringToFile(String outputPath, StringBuilder outputString){
-
+    public StringBuilder writeBinaryStringToFile(String outputPath, StringBuilder outputString) {
+        StringBuilder b = null;
         //pad to multiple of 8 since we had to pad with zeros we add these to make a final complete char
         if (outputString.length() % 200 == 100) {
             outputString.append("0000");
@@ -20,8 +20,7 @@ public class BinaryBox {
 
             java.io.File file = new java.io.File(outputPath);
             if (file.exists()) {
-//       System.out.println("File already exists");
-//       System.exit(0);
+
                 // auto-delete file for convenience
                 file.delete();
             }
@@ -30,7 +29,7 @@ public class BinaryBox {
             java.io.PrintWriter output = new java.io.PrintWriter(file);
 
             //String bin = "011010000110010101111001";
-            StringBuilder b = new StringBuilder();
+            b = new StringBuilder();
             int len = outputString.length();
             int i = 0;
 
@@ -41,28 +40,13 @@ public class BinaryBox {
                 b.append(c);
                 output.append(c);
             }
-
-            //Clear all the string builders
-           // sb.delete(0,sb.length());
-            //outputString.delete(0, outputString.length());
-
-            // Write formatted output to the file
-            //output.append(b.toString());
-            // Close the file
             output.close();
 
-
-
-
-
-            //Convert to chars and write to file
-            //BinaryStringToChars();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(BinaryBox.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-
-        return true;
+        return b;
     }
 
     private static char convert(String bs) {
@@ -78,7 +62,6 @@ public class BinaryBox {
 
         try {
             //New file input stream with file name
-            // this should not be done here at the button.
 
             inputstream = new FileInputStream(inputPath);
             // read till the end of the file
@@ -113,11 +96,24 @@ public class BinaryBox {
         return stringbuilder;
     }
 
-//    void BinaryStringToChars() throws FileNotFoundException {
-//
-//
-//
-//    }
+    public String toString(StringBuilder outputString){
+        StringBuilder b = new StringBuilder();
+        //pad to multiple of 8 since we had to pad with zeros we add these to make a final complete char
+        if (outputString.length() % 200 == 100) {
+            outputString.append("0000");
+        }
+            int len = outputString.length();
+            int i = 0;
+
+            //get 8 bits convert to chars
+            while (i + 8 < len) {
+                char c = convert(outputString.substring(i, i + 8));
+                i += 8;
+                b.append(c);
+            }
+
+        return b.toString();
+    }
 
 
 }
