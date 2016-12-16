@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -48,11 +49,11 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <VBox>
+            <VBox prefHeight="448.0" prefWidth="640.0">
                <children>
-                  <HBox prefHeight="178.0" prefWidth="640.0">
+                  <HBox prefWidth="640.0">
                      <children>
-                        <GridPane prefHeight="100.0" prefWidth="252.0">
+                        <GridPane prefHeight="400.0" prefWidth="300.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -70,18 +71,16 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <TextField GridPane.columnIndex="1" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <Button mnemonicParsing="false" text="kgkjhlk" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                              <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                              <TextField GridPane.columnIndex="1" GridPane.columnSpan="2147483647" />
+                              <TextField GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
+                              <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#genericHandleButton1" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                              <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#genericHandleButton2" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#genericHandleButton3" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#genericHandleButton4" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                              <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#genericHandleButton1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#genericHandleButton2" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#genericHandleButton3" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#genericHandleButton4" GridPane.columnIndex="4" GridPane.rowIndex="3" />
                               <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                               <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                               <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="4" />
