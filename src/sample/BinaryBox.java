@@ -10,7 +10,7 @@ import java.util.logging.Logger;
  */
 public class BinaryBox {
 
-    public boolean writeBinaryStringToFile(String outputPath, StringBuilder outputString) throws FileNotFoundException{
+    public boolean writeBinaryStringToFile(String outputPath, StringBuilder outputString){
 
         //pad to multiple of 8 since we had to pad with zeros we add these to make a final complete char
         if (outputString.length() % 200 == 100) {
@@ -56,7 +56,7 @@ public class BinaryBox {
 
 
             //Convert to chars and write to file
-            BinaryStringToChars();
+            //BinaryStringToChars();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(BinaryBox.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -113,11 +113,11 @@ public class BinaryBox {
         return stringbuilder;
     }
 
-    void BinaryStringToChars() throws FileNotFoundException {
-
-
-
-    }
+//    void BinaryStringToChars() throws FileNotFoundException {
+//
+//
+//
+//    }
 
 
 }
