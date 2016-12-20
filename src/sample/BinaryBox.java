@@ -11,25 +11,17 @@ import java.util.logging.Logger;
 public class BinaryBox {
 
     public StringBuilder writeBinaryStringToFile(String outputPath, StringBuilder outputString) {
-        StringBuilder b = null;
+        StringBuilder characterString = new StringBuilder();
         //pad to multiple of 8 since we had to pad with zeros we add these to make a final complete char
         if (outputString.length() % 200 == 100) {
             outputString.append("0000");
         }
         try {
-
             java.io.File file = new java.io.File(outputPath);
-            if (file.exists()) {
-
-                // auto-delete file for convenience
+            if (file.exists())
                 file.delete();
-            }
 
-            // Create a file
             java.io.PrintWriter output = new java.io.PrintWriter(file);
-
-            //String bin = "011010000110010101111001";
-            b = new StringBuilder();
             int len = outputString.length();
             int i = 0;
 
@@ -37,7 +29,7 @@ public class BinaryBox {
             while (i + 8 < len) {
                 char c = convert(outputString.substring(i, i + 8));
                 i += 8;
-                b.append(c);
+                characterString.append(c);
                 output.append(c);
             }
             output.close();
@@ -45,8 +37,7 @@ public class BinaryBox {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(BinaryBox.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        return b;
+        return characterString;
     }
 
     private static char convert(String bs) {
@@ -96,7 +87,7 @@ public class BinaryBox {
         return stringbuilder;
     }
 
-    public String toString(StringBuilder outputString){
+    public String binarytoCharString(StringBuilder outputString){
         StringBuilder b = new StringBuilder();
         //pad to multiple of 8 since we had to pad with zeros we add these to make a final complete char
         if (outputString.length() % 200 == 100) {
