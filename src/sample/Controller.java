@@ -1,6 +1,6 @@
 package sample;
 
-import a.j.a.b.E;
+
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
