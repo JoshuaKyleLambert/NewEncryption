@@ -68,7 +68,7 @@ public class BinaryBox {
                 stringbuilder.append(binary);  //System.out.println(001000);
             }
 
-            System.out.println(stringbuilder);
+            //System.out.println(stringbuilder);
 
         } catch (Exception ex) {
             // if any error occurs

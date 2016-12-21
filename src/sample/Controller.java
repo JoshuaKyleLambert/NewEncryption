@@ -1,5 +1,6 @@
 package sample;
 
+import a.j.a.b.E;
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
@@ -19,7 +20,7 @@ public class Controller implements Initializable {
     final private boolean ENCRYPT = true;
     final private boolean DECRYPT = false;
     private boolean mode = ENCRYPT;
-    //TODO Create the Decryptor Class
+
     /* TODO
       set up mode button and proper behavior for binary
       buttons and encrypt button based on mode. use above
@@ -29,6 +30,8 @@ public class Controller implements Initializable {
     private TextField inputPath;
     @FXML
     private TextField outputPath;
+    @FXML
+    private Button modeButton;
     @FXML
     private Button key1Button1;
     @FXML
@@ -89,6 +92,11 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if(mode == ENCRYPT)
+            modeButton.setText(" Encrypt ");
+        else
+            modeButton.setText(" Decrypt ");
+
         key1Button1.setText("0");
         key1Button1.setStyle("");
         key1Button2.setText("0");
@@ -147,19 +155,37 @@ public class Controller implements Initializable {
 
     }
 
+    public void modeClicked(){
+        System.out.print("mode clicked");
+        if (mode == ENCRYPT)
+            mode = DECRYPT;
+        else
+            mode = ENCRYPT;
+        reset();
+    }
+
     public void encryptClicked() {
-        System.out.println(getKey1());
-        System.out.println(getKey2());
-        System.out.println(getKey3());
-        System.out.println(getKey4());
-        System.out.println(getBigKey());
-        //TODO setup conditions for mode encrypt button
+//        System.out.println(getKey1());
+//        System.out.println(getKey2());
+//        System.out.println(getKey3());
+//        System.out.println(getKey4());
+//        System.out.println(getBigKey());
+
+        if (mode == ENCRYPT)
         if (!inputPath.getText().equals("") && !outputPath.getText().equals("")) {
             BinaryBox bBox = new BinaryBox();
             StringBuilder plainBinary = bBox.buildBinaryString(inputPath.getText());
             Encryptor encryptor = new Encryptor(plainBinary, getKey1(), getKey2(), getKey3(), getKey4(), getBigKey());
             bBox.writeBinaryStringToFile(outputPath.getText(), encryptor.getOutputString());
         }
+        else
+        if (!inputPath.getText().equals("") && !outputPath.getText().equals("")) {
+                BinaryBox bBox = new BinaryBox();
+                StringBuilder plainBinary = bBox.buildBinaryString(inputPath.getText());
+                Decryptor decryptor = new Decryptor(plainBinary, getKey1(), getKey2(), getKey3(), getKey4(), getBigKey());
+                bBox.writeBinaryStringToFile(outputPath.getText(), decryptor.decrypt());
+        }
+
     }
 
     public void close() {
@@ -215,13 +241,24 @@ public class Controller implements Initializable {
     }
 
     private void setPreviewWindow() {
-        //todo setup conditions for setPreview button encryption mode
+
+        if(mode == ENCRYPT)
         if (!inputPath.getText().equals("")) {
             BinaryBox bBox = new BinaryBox();
             StringBuilder plainBinary = bBox.buildBinaryString(inputPath.getText());
             Encryptor encryptor = new Encryptor(plainBinary, getKey1(), getKey2(), getKey3(), getKey4(), getBigKey());
             previewWindow.setText(bBox.binarytoCharString(encryptor.getOutputString()));
         }
+        if (mode == DECRYPT){
+       // if (!inputPath.getText().equals("")) {
+            BinaryBox bBox = new BinaryBox();
+            StringBuilder plainBinary = bBox.buildBinaryString(inputPath.getText());
+            Decryptor decryptor = new Decryptor(plainBinary, getKey1(), getKey2(), getKey3(), getKey4(), getBigKey());
+            previewWindow.setText(bBox.binarytoCharString(decryptor.decrypt()));
+
+        }
+
+
     }
 
     @FXML

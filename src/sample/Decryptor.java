@@ -13,6 +13,7 @@ public class Decryptor {
 
 
     Decryptor(StringBuilder plainBinary, String key1, String key2, String key3, String key4, String bigKey) {
+        System.out.println("decryptro constructor called");
         this.key1 = key1;
         this.key2 = key2;
         this.key3 = key3;
@@ -25,13 +26,23 @@ public class Decryptor {
     //Returns a decrypted binary String
     public StringBuilder decrypt(){
         StringBuilder output = new StringBuilder();
-        StringBuilder temp = new StringBuilder();
-        for(int i = 0; i < paddedString.length(); i += 100) {
-            temp.append(paddedString.substring(i, i + 100));
-            output.append(buildOutputString(transform10x10(temp)));
-            temp.delete(0, temp.length());
+        StringBuilder temp ;
+        String[][] transformed10;
+        System.out.println(paddedString.length());
+        System.out.println( paddedString);
+
+        for(int i = 0; i < paddedString.length(); i = (i + 100)) {
+
+            temp = new StringBuilder(paddedString.substring(i, (i + 100)));
+            //output.append(buildOutputString(transform10x10(temp)));
+            transformed10 = transform10x10(temp);
+            output.append(buildOutputString( transformed10 ));
+
+           // temp.delete(0, temp.length());
         }
 
+
+        //System.out.println(output);
         return output;
     }
 
@@ -40,12 +51,16 @@ public class Decryptor {
     private String[][] transform10x10(StringBuilder string) {
         String[][] preTransform10 = new String[10][10];
         String[][] postTransform10 = new String[10][10];
-
+        String tempString = string.toString();
         //fill the matrix with the string
         for (int i = 0; i < 10; i++)
-            for (int j = i * 10; j < j + 10; j++)
-                preTransform10[i][j] = String.valueOf(string.charAt(j));
+            for (int j = 0; j <  10; j++) {
+                preTransform10[i][j] = String.valueOf(tempString.charAt((i * 10) + j));
+            }
 
+        for(int i = 0; i < 10 ; i++){
+            for ( int j = 0; j < 10 ; j ++) postTransform10[i][j] = preTransform10[i][j];
+        }
         //Perform desired transforms based on the key contents
 
         if (bigKey.charAt(0) == '1') {
@@ -165,13 +180,31 @@ public class Decryptor {
             postTransform10[1][9] = preTransform10[0][8];
 
         }
+        //System.out.print("transform 10:  ");
+        for(int i = 0; i < 10 ; i++) {
+            for (int j = 0; j < 10; j++) {
+                //System.out.print(postTransform10[i][j]);
+                //output.append(postTransform5[i][j]);
+            }
+        }
+
+        //System.out.println();
         return postTransform10;
     }
 
     // Calls transform5x5 4 times and returns a complete stringbuilder
     private StringBuilder buildOutputString(String[][] matrix){
         StringBuilder output  = new StringBuilder();
+//
+//        for(int i = 0; i < 10; i++)
+//            for(int j = 0; j < 10 ; j++)
+//                System.out.print(matrix[i][j]);
+//
+//        System.out.println();
+
         output.append(transform5x5(matrix, 0, 0,  key1));    //Quad 1
+        //System.out.print(output);
+
         output.append(transform5x5(matrix, 0, 5,  key2));    //Quad 2
         output.append(transform5x5(matrix, 5, 0,  key3));    //Quad 3
         output.append(transform5x5(matrix, 5, 5,  key4));    //Quad 4
@@ -180,7 +213,7 @@ public class Decryptor {
 
     //returns a StringBuilder object from 10x10, 4 calls with
     // proper offsets are needed to complete a 10x10
-    private StringBuilder transform5x5(String[][] s, int rowOffset, int columnOffset, String key) {
+    private StringBuilder transform5x5(String[][] matrix, int rowOffset, int columnOffset, String key) {
         StringBuilder output = new StringBuilder();
         String[][] preTransform5 = new String[5][5];
         String[][] postTransform5 = new String[5][5];
@@ -188,12 +221,22 @@ public class Decryptor {
         //Splitting 10x10 matrix into 5x5 and copying into a 5x5
         for (int r = rowOffset, i = 0; r < rowOffset + 5; r++, i++) {
             for (int c = columnOffset, j = 0; c < columnOffset + 5; c++, j++) {
-                preTransform5[i][j] = s[r][c];
+                preTransform5[i][j] = matrix[r][c];
+                System.out.print(matrix[r][c]);
             }
         }
         for (int r0 = 0; r0 < 5; r0++) {
             System.arraycopy(preTransform5[r0], 0, postTransform5[r0], 0, 5);
         }
+
+//        for(int i = 0; i < 5 ; i++) {
+//            for (int j = 0; j < 5; j++) {
+//
+//                //output.append(Integer.parseInt(postTransform5[i][j]));
+//                System.out.print( postTransform5[i][j]);
+//            }
+//        }
+//        System.out.println();
 
         // Check for and Do transforms
         if (key.charAt(0) == '1') {
@@ -230,24 +273,30 @@ public class Decryptor {
 
         //put array back to a string
         for(int i = 0; i < 5 ; i++) {
-            output.append(Arrays.toString(postTransform5[i]));
+            for (int j = 0; j < 5; j++) {
+
+                output.append(Integer.parseInt(postTransform5[i][j]));
+               // System.out.print( postTransform5[i][j]);
+            }
         }
+        //System.out.println();
         return output;
 
     }
 
     private StringBuilder padZeros(StringBuilder binaryInput) {
-
+        StringBuilder string = new StringBuilder(binaryInput);
+        //System.out.print(string);
         //Capacity of the binary string and padding size determined
         int cap = binaryInput.length();
         int padding = 100 - (cap % 100);
 
         //Padding final matrix so that it is full
         for (int i = 0; i < padding; i++) {
-            binaryInput.append("0");
+            string.append("0");
         }
-
-        return binaryInput;
+        //System.out.println(binaryInput);
+        return string;
 
     }
 

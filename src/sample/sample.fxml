@@ -94,6 +94,10 @@
                      <children>
                         <Button mnemonicParsing="false" onAction="#encryptClicked" text="Encrypt and Export File" />
                         <Button mnemonicParsing="false" onAction="#reset" text="Reset" />
+                        <Region prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                        <Label text="Mode: " />
+                        <Button fx:id="modeButton" mnemonicParsing="false" onAction="#modeClicked" />
+                        <Region prefWidth="100.0" />
                      </children></HBox>
                </children>
             </VBox>
