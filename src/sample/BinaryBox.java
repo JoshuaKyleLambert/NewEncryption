@@ -30,8 +30,9 @@ public class BinaryBox {
                 char c = convert(outputString.substring(i, i + 8));
                 i += 8;
                 characterString.append(c);
-                output.append(c);
+
             }
+            output.append(characterString.toString());
             output.close();
 
         } catch (FileNotFoundException ex) {
