@@ -1,11 +1,11 @@
 package sample;
 
 /**
- * Created by Joshua on 12/15/2016.
+ * Created by Joshua Lambert
+ * on 12/15/2016.
  */
  class Encryptor {
-    private String key1;
-    private String key2, key3, key4, bigKey;
+    private String key1, key2, key3, key4, bigKey;
     private int[][] preTransform10 = new int[10][10];
     private StringBuilder outputString = new StringBuilder();
     //StringBuilder plainBinary;

@@ -25,7 +25,7 @@ class Decryptor {
         StringBuilder output = new StringBuilder();
         String[][] preTransform10 = new String[10][10];
         String[][] postTransform10 = new String[10][10];
-        StringBuilder tempString = new StringBuilder(input.toString());
+        StringBuilder tempString = new StringBuilder(input);
 
 
         while (tempString.length()  >= 100) {
@@ -35,7 +35,7 @@ class Decryptor {
             for (int i = 0; i < 10; i++) {
                 for (int j = 0; j < 10; j++) {
                     preTransform10[i][j] = String.valueOf(tempString.charAt(j));
-                    System.out.println(tempString.charAt(j) + "  " + j );
+                   // System.out.println(tempString.charAt(j) + "  " + j );
                 }
                 tempString.delete(0, 10);
             }
@@ -178,7 +178,7 @@ class Decryptor {
         //read 100 char's at a time transform and append to output String
         String[][] preTransform5 = new String[5][5];
         String[][] postTransform5 = new String[5][5];
-        StringBuilder tempString = new StringBuilder(input.toString());
+        StringBuilder tempString = new StringBuilder(input);
         int keyNumber = 1;
         String key = "";
 
@@ -209,10 +209,10 @@ class Decryptor {
                 for (int j = 0; j < 5; j++) {
                     preTransform5[i][j] = String.valueOf(tempString.charAt(j));
                 }
-
+                tempString.delete(0, 5);
             }
 
-            tempString.delete(0, 25);
+
             // copy array
             for (int i = 0; i < 5; i++) {
                 System.arraycopy(preTransform5[i], 0, postTransform5[i], 0, 5);
@@ -261,7 +261,7 @@ class Decryptor {
         return output;
     }
 
-    //Returns a decrypted binary String
+    //Returns a decrypted String
     StringBuilder decrypt() {
         StringBuilder temp1, temp2, temp3;
         temp1 = padZeros(encryptedString);
@@ -273,7 +273,7 @@ class Decryptor {
         System.out.println("transform 100: " + temp2);
         System.out.println("transform  25: " + temp3);
 
-        return temp1;
+        return temp3;
     }
 
     private StringBuilder padZeros(StringBuilder binaryInput) {
