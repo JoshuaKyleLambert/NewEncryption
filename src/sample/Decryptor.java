@@ -1,16 +1,14 @@
 package sample;
 
-import java.util.Arrays;
 
 /**
  * Created by Joshua on 12/19/2016.
  * Decryptor Class constructed with a binary string
  * and a set of keys will ..  I think its pretty obvious.
  */
-public class Decryptor {
+class Decryptor {
     private String key1, key2, key3, key4, bigKey;
     private StringBuilder encryptedString;
-
 
     Decryptor(StringBuilder encryptedString, String key1, String key2, String key3, String key4, String bigKey) {
         System.out.println("decryptro constructor called");
@@ -22,7 +20,7 @@ public class Decryptor {
         this.encryptedString = encryptedString;
     }
 
-    public StringBuilder transform100(StringBuilder input) {
+    private StringBuilder transform100(StringBuilder input) {
         //read 100 char's at a time transform and append to output String
         StringBuilder output = new StringBuilder();
         String[][] preTransform10 = new String[10][10];
@@ -43,7 +41,7 @@ public class Decryptor {
             }
             // copy array
             for (int i = 0; i < 10; i++) {
-                for (int j = 0; j < 10; j++) postTransform10[i][j] = preTransform10[i][j];
+                System.arraycopy(preTransform10[i], 0, postTransform10[i], 0, 10);
             }
 
             if (bigKey.charAt(0) == '1') {
@@ -175,7 +173,7 @@ public class Decryptor {
         return output;
     }
 
-    public StringBuilder transform25(StringBuilder input) {
+    private StringBuilder transform25(StringBuilder input) {
         StringBuilder output = new StringBuilder();
         //read 100 char's at a time transform and append to output String
         String[][] preTransform5 = new String[5][5];
@@ -217,7 +215,7 @@ public class Decryptor {
             tempString.delete(0, 25);
             // copy array
             for (int i = 0; i < 5; i++) {
-                for (int j = 0; j < 5; j++) postTransform5[i][j] = preTransform5[i][j];
+                System.arraycopy(preTransform5[i], 0, postTransform5[i], 0, 5);
             }
 
             // Check for and Do transforms
@@ -264,7 +262,7 @@ public class Decryptor {
     }
 
     //Returns a decrypted binary String
-    public StringBuilder decrypt() {
+    StringBuilder decrypt() {
         StringBuilder temp1, temp2, temp3;
         temp1 = padZeros(encryptedString);
         temp2 = transform100(temp1);
@@ -293,6 +291,5 @@ public class Decryptor {
         return string;
 
     }
-
 
 }
