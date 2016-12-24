@@ -194,7 +194,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    protected void fileOpen(ActionEvent event) {
+    protected void fileOpen() {
         FileChooser fcInput = new FileChooser();
         fcInput.setInitialDirectory(new File(".\\"));
         fcInput.setTitle("Source File");
@@ -212,7 +212,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    protected void fileOutput(ActionEvent event) {
+    protected void fileOutput() {
         FileChooser fcOutput = new FileChooser();
         fcOutput.setInitialDirectory(new File(".\\"));
 

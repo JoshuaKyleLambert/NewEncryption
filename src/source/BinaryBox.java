@@ -7,10 +7,12 @@ import java.util.logging.Logger;
 
 /**
  * Created by Joshua on 12/15/2016.
+ * Create a binary box with a file path and it will generate
+ * a binary string from it or vice versa.
  */
-public class BinaryBox {
+class BinaryBox {
 
-    public StringBuilder writeBinaryStringToFile(String outputPath, StringBuilder outputString) {
+    StringBuilder writeBinaryStringToFile(String outputPath, StringBuilder outputString) {
         StringBuilder characterString = new StringBuilder();
         //pad to multiple of 8 since we had to pad with zeros we add these to make a final complete char
         if (outputString.length() % 200 == 100) {
@@ -19,7 +21,9 @@ public class BinaryBox {
         try {
             java.io.File file = new java.io.File(outputPath);
             if (file.exists())
-                file.delete();
+                if (file.delete())
+                    System.out.println("File delete successful.");
+
 
             java.io.PrintWriter output = new java.io.PrintWriter(file);
             int len = outputString.length();
@@ -45,7 +49,7 @@ public class BinaryBox {
         return (char) Integer.parseInt(bs, 2);
     }
 
-    public StringBuilder buildBinaryString(String inputPath) {
+    StringBuilder buildBinaryString(String inputPath) {
 
         StringBuilder stringbuilder = new StringBuilder();
         int integerValue, missingZeros;
@@ -77,18 +81,17 @@ public class BinaryBox {
         } finally {
 
             // releases all system resources from the streams
-            if (inputstream != null) {
-                try {
-                    inputstream.close();
-                } catch (Exception ex) {
-                }
+            if (inputstream != null) try {
+                inputstream.close();
+            } catch (Exception ex) {
+                System.out.println("Inputstream.close() failed");
             }
         }
 
         return stringbuilder;
     }
 
-    public String binarytoCharString(StringBuilder outputString){
+    String binarytoCharString(StringBuilder outputString){
         StringBuilder b = new StringBuilder();
         //pad to multiple of 8 since we had to pad with zeros we add these to make a final complete char
         if (outputString.length() % 200 == 100) {
