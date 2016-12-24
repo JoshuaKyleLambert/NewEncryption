@@ -1,4 +1,4 @@
-package sample;
+package source;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("layout.fxml"));
         primaryStage.setTitle("Diagonal Transposition Encryption");
         primaryStage.setScene(new Scene(root, 700, 465));
         primaryStage.show();
